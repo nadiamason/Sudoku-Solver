@@ -12,16 +12,16 @@ def solving_iteration(grid, columns, the_boxes, og):
 
         rownumber = grid.index(row)
 
-        if rownumber <= 2:
-            boxnumber = 0 
-        elif rownumber >= 6:
-            boxnumber = 2
-        else:
-            boxnumber = 3
-
         for x in row:
 
             if x == 0:
+
+                if rownumber <= 2:
+                    boxnumber = 0 
+                elif rownumber >= 6:
+                    boxnumber = 2
+                else:
+                    boxnumber = 3
 
                 columnnumber = row.index(x)
                 if columnnumber > 2 and columnnumber < 6 and boxnumber == 0:
