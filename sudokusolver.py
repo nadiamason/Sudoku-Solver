@@ -6,7 +6,40 @@ def divide_chunks(l, n):
     for i in range(0, len(l), n): 
         yield l[i:i + n]
 
-def solving_iteration(grid, columns, the_boxes, og):
+def make_columns_boxes(grid):
+    columns = []
+
+    for i in range(9):
+        columns.append([item[i] for item in grid])
+
+    # list should have
+    n = 3
+    boxes = []
+    final_boxes = []
+    for row in grid:
+
+        x = list(divide_chunks(row, n))
+        boxes.append(x)
+
+
+    for i in range(3):
+        f_boxes = []
+
+        for y in boxes:
+            f_boxes.append(y[i])
+        
+        final_boxes.append(f_boxes)
+
+    the_boxes = []
+    for box in final_boxes:
+        z = list(divide_chunks(box, n))
+        for i in range(0,3):
+            z[i] = [x for l in z[i] for x in l]
+            the_boxes.append(z[i])
+    
+    return the_boxes, columns
+
+def solving_iteration(grid):
 
     for row in grid:
 
@@ -37,6 +70,8 @@ def solving_iteration(grid, columns, the_boxes, og):
                 elif columnnumber >= 6 and boxnumber == 3:
                     boxnumber = 8 
 
+                the_boxes, columns = make_columns_boxes(grid)
+
                 value = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
                 for n in set(grid[rownumber]):
@@ -59,9 +94,7 @@ def solving_iteration(grid, columns, the_boxes, og):
                 
                 if len(value) == 1:
                     grid[rownumber][columnnumber] = value[0]
-    if grid == og:
-        print("Identical grids")
-        exit
+                    
     return grid
 
 #grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
@@ -84,39 +117,11 @@ grid = [[ 0,0,8,0,0,9,0,0,0],
         [ 4,3,7,5,9,8,1,6,9],
         [ 0,0,2,0,0,0,5,0,0]]
 
-columns = []
 
-for i in range(9):
-    columns.append([item[i] for item in grid])
-
-# list should have
-n = 3
-boxes = []
-final_boxes = []
-for row in grid:
-
-    x = list(divide_chunks(row, n))
-    boxes.append(x)
-
-
-for i in range(3):
-    f_boxes = []
-
-    for y in boxes:
-        f_boxes.append(y[i])
-    
-    final_boxes.append(f_boxes)
-
-the_boxes = []
-for box in final_boxes:
-    z = list(divide_chunks(box, n))
-    for i in range(0,3):
-        z[i] = [x for l in z[i] for x in l]
-        the_boxes.append(z[i])
 
 counter = 0
 while any(0 in sl for sl in grid) == True:
-    grid = solving_iteration(grid, columns, the_boxes, grid)
+    grid = solving_iteration(grid)
     print(grid)
     counter + 1
     if counter == 100:
