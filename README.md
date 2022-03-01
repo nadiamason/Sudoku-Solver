@@ -11,7 +11,9 @@ It also looks for each row where there is only one place a number could go FOR R
 The next stage to be added to this so it can solve more complex sudkous is to code this for columns and boxes also.
 
 E.g.
-grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
+grid = 
+
+        [[3, 0, 6, 5, 0, 8, 4, 0, 0],
 
         [5, 2, 0, 0, 0, 0, 0, 0, 0],
         
