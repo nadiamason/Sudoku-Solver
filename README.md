@@ -31,7 +31,8 @@ grid = [[ 0,0,8,0,0,9,0,0,0],
         [ 5,8,0,1,3,2,4,0,9],
         [ 4,3,7,5,9,8,1,6,9],
         [ 0,0,2,0,0,0,5,0,0]]
-    An 'easy' sudoku
+
+This is considered an 'easy' sudoku
 
 Has successfully solved:
 grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
@@ -43,3 +44,7 @@ grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
         [1, 3, 0, 0, 0, 0, 2, 5, 0],
         [0, 0, 0, 0, 0, 0, 0, 7, 4],
         [0, 0, 5, 2, 0, 6, 3, 0, 0]]
+        
+ This is considered a 'hard' sudoku
+ 
+ Has failed at solving 'expert' sudokus at the moment.
