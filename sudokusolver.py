@@ -155,39 +155,63 @@ def finding_singles(grid):
                         continue
 
                 unknowns.append(value)
-            
-            # [[1,9],[2,9],[3,9]]
-                
             columnnumber += 1
+            
+        flat_list = [item for sublist in unknowns for item in sublist]
+
+        my_dict = {i:flat_list.count(i) for i in flat_list}
+
+        list_of_key = list(my_dict.keys())
+        list_of_value = list(my_dict.values())
+                
+        thiscounter = 0
+        for i in list_of_value:
+            # value is the number which we will be replacing with        
+            value = list_of_key[thiscounter]
+            # i is the number of duplicates = if 1 can replace it
+            if i == 1:
+                index = 0
+                for lists in unknowns:
+                    try:
+                        if value in lists:
+                            unknowns[index] = value
+                    except TypeError:
+                        index += 1
+                        continue
+
+                    index += 1
+                    
+            thiscounter += 1
+            
+                # now have unknowns = [1,[2,9], [2,9]]
+
+        unknowncolumnnumber = 0
+        unknowncounter = 0
+        for x in row:
+            
+            
+            if x == 0:
+                if type(unknowns[unknowncounter]) == int:
+                    grid[rownumber][unknowncolumnnumber] = unknowns[unknowncounter]
+                unknowncounter += 1
+            unknowncolumnnumber += 1 
+
 
                 
         
         rownumber += 1
+    
+    return grid
 
-
-
-
-                
-
-#grid = [[3, 0, 6, 5, 7, 8, 4, 0, 0],
-#        [5, 2, 0, 0, 0, 0, 0, 0, 0],
-#        [4, 8, 7, 6, 2, 9, 5, 3, 1],
-#        [0, 0, 3, 0, 1, 0, 0, 8, 0],
-#        [9, 0, 0, 8, 6, 3, 0, 0, 5],
-#        [0, 5, 0, 0, 9, 0, 6, 0, 0],
-#        [1, 3, 0, 0, 0, 0, 2, 5, 0],
-#        [0, 0, 0, 0, 0, 0, 0, 7, 4],
-#        [0, 0, 5, 2, 0, 6, 3, 0, 0]]
-
-grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
-        [5, 2, 0, 0, 0, 0, 0, 0, 0],
-        [0, 8, 7, 0, 0, 0, 0, 3, 1],
-        [0, 0, 3, 0, 1, 0, 0, 8, 0],
-        [9, 0, 0, 8, 6, 3, 0, 0, 5],
-        [0, 5, 0, 0, 9, 0, 6, 0, 0],
-        [1, 3, 0, 0, 0, 0, 2, 5, 0],
-        [0, 0, 0, 0, 0, 0, 0, 7, 4],
-        [0, 0, 5, 2, 0, 6, 3, 0, 0]]
+grid = [[0, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 9, 0, 0, 6, 0, 7],
+        [0, 9, 0, 0, 8, 3, 0, 5, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 5, 0, 3, 0, 0, 0, 2, 0],
+        [9, 0, 0, 0, 7, 1, 0, 0, 5],
+        [0, 0, 5, 1, 0, 2, 0, 0, 0],
+        [0, 3, 0, 0, 0, 0, 0, 6, 0],
+        [0, 0, 0, 7, 0, 4, 0, 0, 8]]
 
 
 
@@ -203,6 +227,25 @@ while any(0 in sl for sl in grid) == True:
 
 grid = finding_singles(grid)
 
-print(counter)
+while any(0 in sl for sl in grid) == True:
+    grid = solving_iteration(grid)
+    
+    if counter == 17:
+        break
+    
+    counter += 1
+    print(counter)
+
+grid = finding_singles(grid)
+
+while any(0 in sl for sl in grid) == True:
+    grid = solving_iteration(grid)
+    
+    if counter == 17:
+        break
+    
+    counter += 1
+    print(counter)
+
 for row in grid:
     print(row)
