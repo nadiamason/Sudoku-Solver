@@ -38,6 +38,7 @@ for i in list_of_value:
                 if value in lists:
                     unknowns[index] = value
             except TypeError:
+                index += 1
                 continue
 
             index += 1
