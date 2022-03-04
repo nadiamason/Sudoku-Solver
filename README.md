@@ -11,10 +11,15 @@ It also looks for each row where there is only one place a number could go FOR R
 The next stage to be added to this so it can solve more complex sudkous is to code this for columns and boxes also.
 
 I am also looking to possibly:
+
     - add a tester to make sure input is in right format
+    
     - make sure sudoku given is solveable - not given an impossible set up
+    
     - make an image reader so can take photos of sudokus and solve them
+    
     - make into website format with 'nice' interface
+    
 
 E.g.
 grid = 
